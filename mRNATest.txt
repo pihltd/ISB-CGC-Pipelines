@@ -1,0 +1,10 @@
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1709378.cb8180ec-ce5f-4c1f-ab1a-38717607169f.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1708383.bc33e129-174b-4193-b65a-844e06984a81.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1708738.6a753497-6d42-4c65-a54a-c14bcbcaaf62.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1703965.faad58ae-6000-4ab9-8469-ecd92f0344ff.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1709297.90c36d60-f8f2-4bf6-9f01-fc02e19dde5d.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1703969.34864a18-2c95-4cbd-9f73-405a38f6d37e.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1708605.680b6b06-1331-4060-adb3-c44e862895b0.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1729817.777339be-465d-4877-9f73-6c49b9326e73.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1729778.e5ea7704-6e27-4c1e-878e-1bcc809cbf2b.sorted_genome_alignments.bam
+gs://5aa919de-0aa0-43ec-9ec3-288481102b6d/tcga/KICH/RNA/RNA-Seq/UNC-LCCC/ILLUMINA/UNCID_1708257.7af273bb-bede-495c-8a07-0a1d5d23a0eb.sorted_genome_alignments.bam
