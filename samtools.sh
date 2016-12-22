@@ -6,7 +6,7 @@
 usage() { echo "Usage: $0 [-i <input file>] [-o <output directory>] [-l <log directory>] [-j <job name>]" 1>&2; exit 1; }
 
 JOBNAME="samtools-index"
-while getopts "i:o:l:" args; do
+while getopts "i:o:l:j:" args; do
   case "${args}" in
     i)
 	  INPUTFILE=${OPTARG}
