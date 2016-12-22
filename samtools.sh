@@ -3,8 +3,9 @@
 #Heavily modified version of startFastqc.sh 
 #https://github.com/isb-cgc/ISB-CGC-pipelines/blob/master/lib/examples/launch_scripts/startFastqc.sh
 
-usage() { echo "Usage: $0 [-i <input file>] [-o <output directory>] [-l <log directory>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-i <input file>] [-o <output directory>] [-l <log directory>] [-j <job name>]" 1>&2; exit 1; }
 
+JOBNAME="samtools-index"
 while getopts "i:o:l:" args; do
   case "${args}" in
     i)
@@ -15,6 +16,9 @@ while getopts "i:o:l:" args; do
 	  ;;
 	l)
 	  LOGDIR=${OPTARG}
+	  ;;
+	j)
+	  JOBNAME=${OPTARG}
 	  ;;
 	 *)
 	   usage
@@ -60,7 +64,7 @@ while read bamFile; do
 	fi
 
     # Submit a task to the Google Genomics Pipelines API for the given BAM file
-	isb-cgc-pipelines submit --pipelineName samtools-index \
+	isb-cgc-pipelines submit --pipelineName $JOBNAME \
 		--inputs "${bamFile}:${bamFileName}" \
 		--outputs "*bai:${OUTDIR}" \
 		--cmd "samtools index $bamFileName" \
