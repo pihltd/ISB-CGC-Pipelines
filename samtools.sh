@@ -2,6 +2,7 @@
 
 #Heavily modified version of startFastqc.sh 
 #https://github.com/isb-cgc/ISB-CGC-pipelines/blob/master/lib/examples/launch_scripts/startFastqc.sh
+# Last modified
 
 usage() { echo "Usage: $0 [-i <input file>] [-o <output directory>] [-l <log directory>] [-j <job name>]" 1>&2; exit 1; }
 
@@ -71,6 +72,10 @@ while read bamFile; do
 		--imageName nareshr/samtoolsindex \
 		--cores 1 --mem 2 \
 		--diskSize $diskSize \
-        --logsPath $LOGDIR \
+                --logsPath $LOGDIR \
 		--preemptible
+
+    #Add a wait time to avoid overwhelming the scheduler
+    sleep 5
+
 done < $INPUTFILE
