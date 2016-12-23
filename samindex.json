@@ -1,0 +1,38 @@
+{
+  "name": "samtools_index",
+  "description": "Use Rashi's Docker image to create BAM index files",
+  "inputParameters": [{
+    "name" : "INPUT_FILE",
+    "localCopy" : {
+      "disk": "datadisk",
+      "path" : "input.bam"
+    }
+  }],
+  "outputParameters" : [{
+    "name" : "OUTPUT_FILE",
+    "localCopy" : {
+      "disk" : "datadisk",
+      "path": "input.bam.bai"
+    }
+  }],
+  "resources" : {
+    "minimumCpuCores" : 1,
+    "minimumRamGb" : 2,
+    "zones" : [
+      "us-central1-a",
+      "us-central1-b",
+      "us-central1-c",
+      "us-central1-f"
+     ],
+     "disks" : [{
+        "name" : "datadisk",
+        "type" : "PERSISTENT_HDD",
+        "autoDelete" : true,
+        "mountPoint" : "/mnt/data"
+      }]
+   },
+  "docker" :{
+    "imageName" : "nareshr/samtoolsindex",
+    "cmd" : "samtools index ${INPUT_FILE}"
+  }
+}
