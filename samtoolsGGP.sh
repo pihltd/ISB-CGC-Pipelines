@@ -74,9 +74,11 @@ while read bamFile; do
     # Use the "calculateDiskSize" utility script to calculate the size of the disk if it is known
 	if [ -e $CALCSCRIPT ]; then
           diskSize=$($CALCSCRIPT --inputFile $bamFile --roundToNearestGbInterval 100)
-	#If the script doesn't exist, just use a 1T disk
+	#If the script doesn't exist, do it the bash way with a 100 G buffer
 	else
-	  diskSize=1000
+          BYTES=$(gsutil du $bamFile | cut -d ' ' -f1)
+          GIG=$(( $BYTES/1073741824 ))
+          diskSize=$(( (($GIG+100)/10)*10 ))
 	fi
 
     # Submit a task to the Google Genomics Pipelines API for the given BAM file
