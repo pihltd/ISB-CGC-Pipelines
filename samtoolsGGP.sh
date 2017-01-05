@@ -61,8 +61,8 @@ while read bamFile; do
     continue
   fi
   #Test to see if the file exists and skip if it doesn't
-   gsutil stat -q $bamFile
-   if [ $? -eq 1]; then
+   gsutil -q stat $bamFile
+   if [ $? -eq 1 ]; then
     echo "$bamFile does not exist"
     continue
   fi
