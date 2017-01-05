@@ -6,7 +6,6 @@
 
 usage() { echo "Usage: $0 [-i <input file>] [-o <output directory>] [-l <log directory>] [-p <pipeline file>]" 1>&2; exit 1; }
 
-JOBNAME="samtools-index"
 while getopts "i:o:l:p:" args; do
   case "${args}" in
     i)
@@ -57,11 +56,16 @@ fi
 CALCSCRIPT="/usr/bin/calculateDiskSize"
 while read bamFile; do
   #If file is not in a Google bucket, fail
-    if  [[ $bamFile != "gs://"* ]]; then
-      echo "$bamFile is not in a Google bucket"
-      #exit 1
-	  continue
-    fi
+  if  [[ $bamFile != "gs://"* ]]; then
+    echo "$bamFile is not in a Google bucket"
+    continue
+  fi
+  #Test to see if the file exists and skip if it doesn't
+   gsutil stat -q $bamFile
+   if [ $? -eq 1]; then
+    echo "$bamFile does not exist"
+    continue
+  fi
 
     #Extract the file name from the path
     bamFileName=$(echo $bamFile | rev | cut -d '/' -f 1 | rev)
