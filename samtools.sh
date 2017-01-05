@@ -4,10 +4,12 @@
 #https://github.com/isb-cgc/ISB-CGC-pipelines/blob/master/lib/examples/launch_scripts/startFastqc.sh
 # Last modified
 
-usage() { echo "Usage: $0 [-i <input file>] [-o <output directory>] [-l <log directory>] [-j <job name>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-i <input file>] [-o <output directory>] [-l <log directory>] [-j <job name>] [-p Use pre-emptible VMs]" 1>&2; exit 1; }
 
 JOBNAME="samtools-index"
-while getopts "i:o:l:j:" args; do
+PREEMPTIBLE=false
+
+while getopts "i:o:l:j:p" args; do
   case "${args}" in
     i)
 	  INPUTFILE=${OPTARG}
@@ -21,9 +23,12 @@ while getopts "i:o:l:j:" args; do
 	j)
 	  JOBNAME=${OPTARG}
 	  ;;
-	 *)
-	   usage
-	   ;;
+        p)
+         PREEMPTIBLE=TRUE
+         ;;
+	*)
+	  usage
+	  ;;
   esac
 done
 
@@ -73,7 +78,8 @@ while read bamFile; do
 	fi
 
     # Submit a task to the Google Genomics Pipelines API for the given BAM file
-	isb-cgc-pipelines submit --pipelineName $JOBNAME \
+       if [ "$PREEMPTIBLE" = true ]; then
+           isb-cgc-pipelines submit --pipelineName $JOBNAME \
 		--inputs "${bamFile}:${bamFileName}" \
 		--outputs "*bai:${OUTDIR}" \
 		--cmd "samtools index $bamFileName" \
@@ -82,6 +88,16 @@ while read bamFile; do
 		--diskSize $diskSize \
                 --logsPath $LOGDIR \
 		--preemptible
+       else
+           isb-cgc-pipelines submit --pipelineName $JOBNAME \
+                --inputs "${bamFile}:${bamFileName}" \
+                --outputs "*bai:${OUTDIR}" \
+                --cmd "samtools index $bamFileName" \
+                --imageName nareshr/samtoolsindex \
+                --cores 1 --mem 2 \
+                --diskSize $diskSize \
+                --logsPath $LOGDIR
+        fi
 
     #Add a wait time to avoid overwhelming the scheduler
     sleep 5
